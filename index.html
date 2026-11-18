@@ -87,14 +87,32 @@
   }
   .photos img {
     width: 100%;
-    aspect-ratio: 3 / 4;
+    height: auto;            /* never stretch: the height follows the width */
+    aspect-ratio: 3 / 4;     /* desktop: three matching frames, cropped to fit */
     object-fit: cover;
     display: block;
     border-radius: 4px;
   }
-  @media (max-width: 560px) {
-    .photos { grid-template-columns: 1fr; max-width: 320px; }
+  /* Phones: one column, each photo at its own shape, nothing cropped or squashed. */
+  @media (max-width: 640px) {
+    .photos { grid-template-columns: 1fr; max-width: 420px; gap: 20px; }
+    .photos img { aspect-ratio: auto; object-fit: contain; }
   }
+  /* Footer: the NTC sunset artwork on its own dark band. */
+  footer {
+    margin: 0 -24px -24px;   /* reach the page edges, past the body padding */
+    padding: 0 0 28px;
+    background: #050508;
+    color: #d9cdbb;
+  }
+  footer img {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: 0 auto;
+  }
+  footer p { margin: 8px 16px 0; font-size: 0.85rem; letter-spacing: 0.02em; }
 </style>
 </head>
 <body>
@@ -114,5 +132,9 @@
     <img src="photos/canopy.jpg" alt="Looking up through oak branches at the sky" width="800" height="1200" loading="lazy">
    </section>
   </main>
+  <footer>
+    <img src="photos/footer.jpg" alt="NTC: two people watching the sunset through an opening in the trees" width="1800" height="1079" loading="lazy">
+    <p>Nature Therapy Club · Cal Poly</p>
+  </footer>
 </body>
 </html>
